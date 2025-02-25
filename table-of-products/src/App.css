@@ -1,0 +1,169 @@
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .input-box{
+    width: 82%;
+    height: 25px;
+    outline: none;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+  }
+  
+  th {
+    background: #007bff;
+    color: white;
+  }
+  
+  td img {
+    width: 50px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  td img:hover {
+    transform: scale(1.1);
+  }
+  
+  button {
+    padding: 8px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+  }
+  
+  button:hover {
+    opacity: 0.8;
+  }
+  
+  .addNew-btn{
+    background-color: #28a745;
+    color: #f8f9fa;
+    width: 14%;
+    padding: 4px 0 7px 0;
+  }
+  
+  .add-btn {
+    background: #28a745;
+    color: white;
+  }
+  
+  .edit-btn {
+    background: #ffc107;
+    color: black;
+    width: 86%;
+  }
+  
+  .delete-btn {
+    background: #dc3545;
+    color: white;
+    width: 86%;
+  }
+  
+  
+  .modal, .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    width: 50%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .popup p {
+    margin-bottom: 15px;
+    font-size: 16px;
+  }
+  
+  .modal input, 
+  .modal textarea {
+    width: 80%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .modal select{
+    width: 82%;
+    padding: 8px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .modal textarea {
+    height: 80px;
+  }
+  
+  .modal button {
+    width: 30%;
+    margin-top: 10px;
+  }
+  
+  .delete-popup{
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  
+  .close-btn {
+    background: #6c757d;
+    color: white;
+  }
+  
+  
+  @media (max-width: 600px) {
+    .container {
+      width: 100%;
+      padding: 10px;
+    }
+    .input-box{
+      width: 78%;
+    }
+    
+    .modal, .popup {
+      width: 60%;
+    }
+    .modal select{
+      width: 82%;
+    }
+    
+    table {
+      font-size: 14px;
+    }
+    
+    button {
+      font-size: 12px;
+    }
+  }
+  
