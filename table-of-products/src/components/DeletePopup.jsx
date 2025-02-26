@@ -2,7 +2,7 @@ import React from "react";
 
 const DeletePopup = ({ onConfirm, onCancel }) => {
   return (
-    <div className="popup">
+    <section className="popup">
       <p>Are you sure you want to delete this product?</p>
 
       <button className="delete-popup" onClick={onConfirm}>
@@ -12,7 +12,7 @@ const DeletePopup = ({ onConfirm, onCancel }) => {
       <button className="close-btn" onClick={onCancel}>
         Cancel
       </button>
-    </div>
+    </section>
   );
 };
 

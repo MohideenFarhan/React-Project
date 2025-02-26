@@ -1,41 +1,45 @@
 import React, { useState, useEffect } from "react";
 
-const ProductForm = ({ editingProduct, categories, onSave, onCancel }) => {
-  const [formData, setFormData] = useState({
-    title: "",
-    price: "",
-    category: "",
-    image: "",
-    description: "",
-  });
+const InitialFormData = () => ({
+  title: "",
+  price: "",
+  category: "",
+  image: "",
+  description: "",
+});
 
-  // Reset form when editingProduct changes
+const ProductForm = ({ editingProduct, categories, onSave, onCancel }) => {
+  const [formData, setFormData] = useState(InitialFormData);
+
   useEffect(() => {
-    if (editingProduct) {
-      setFormData(editingProduct);
-    } else {
-      setFormData({
-        title: "",
-        price: "",
-        category: "",
-        image: "",
-        description: "",
-      });
-    }
+    setFormData(editingProduct || InitialFormData());
   }, [editingProduct]);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData((prevData) => ({
+      ...prevData,
+      [e.target.name]: e.target.value,
+    }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (
+      !formData.title ||
+      !formData.price ||
+      !formData.category ||
+      !formData.image ||
+      !formData.description
+    ) {
+      alert("Fill all the Fields!");
+      return;
+    }
     onSave(formData);
   };
 
   return (
-    <div className="modal">
-      <form onSubmit={handleSubmit}>
+    <section className="modal">
+      <form id="form-field" onSubmit={handleSubmit}>
         <h3 className="modal-title">
           {editingProduct ? "Update Product" : "Add Product"}
         </h3>
@@ -102,7 +106,7 @@ const ProductForm = ({ editingProduct, categories, onSave, onCancel }) => {
           Cancel
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 

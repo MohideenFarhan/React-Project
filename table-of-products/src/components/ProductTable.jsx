@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { BASE_URL } from "../apiConfig";
 import ProductList from "./ProductList";
 import ProductForm from "./ProductForm";
 import ProductSearch from "./ProductSearch";
@@ -14,22 +15,41 @@ const ProductTable = () => {
   const [categories, setCategories] = useState([]);
   const [productId, setProductId] = useState("");
 
+  const isProdcutsFetched = useRef(false);
+  const isCategoriesFetched = useRef(false);
+
   useEffect(() => {
-    fetchProducts();
-    fetchCategories();
+    if (!isProdcutsFetched.current) {
+      fetchProducts();
+      isProdcutsFetched.current = true;
+    }
+    if (!isCategoriesFetched.current) {
+      fetchCategories();
+      isCategoriesFetched.current = true;
+    }
   }, []);
 
   const fetchProducts = async () => {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const data = await res.json();
-    setProducts(data);
-    setFilteredProducts(data);
+    try {
+      const res = await fetch(`${BASE_URL}`);
+      if (!res.ok) throw new Error("Failed to fetch products ");
+      const data = await res.json();
+      setProducts(data);
+      setFilteredProducts(data);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    }
   };
 
   const fetchCategories = async () => {
-    const res = await fetch("https://fakestoreapi.com/products/categories");
-    const data = await res.json();
-    setCategories(data);
+    try {
+      const res = await fetch(`${BASE_URL}/categories`);
+      if (!res.ok) throw new Error("Failed to fetch categories ");
+      const data = await res.json();
+      setCategories(data);
+    } catch (error) {
+      console.error("Error fetching product", error);
+    }
   };
 
   const fetchProductById = async (id) => {
@@ -38,7 +58,7 @@ const ProductTable = () => {
       return;
     }
     try {
-      const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+      const res = await fetch(`${BASE_URL}/${id}`);
       if (!res.ok) {
         alert("Product not found!");
         return;
@@ -79,7 +99,7 @@ const ProductTable = () => {
 
   const handleDeleteClick = (id) => {
     setDeleteProductId(id);
-    setShowDeletePopup(true); // Ensure popup is shown
+    setShowDeletePopup(true);
   };
 
   const handleDelete = () => {
@@ -95,7 +115,7 @@ const ProductTable = () => {
   };
 
   return (
-    <div className="container">
+    <main className="container">
       <h1>Product Table</h1>
 
       <ProductSearch
@@ -107,7 +127,7 @@ const ProductTable = () => {
       <button
         className="addNew-btn"
         onClick={() => {
-          setEditingProduct(null); // Reset editing product
+          setEditingProduct(null);
           setShowForm(true);
         }}
       >
@@ -136,7 +156,7 @@ const ProductTable = () => {
           onCancel={() => setShowDeletePopup(false)}
         />
       )}
-    </div>
+    </main>
   );
 };
 
