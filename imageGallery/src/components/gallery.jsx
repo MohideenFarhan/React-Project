@@ -1,24 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Gallery = ({ images, index, setIndex }) => {
   const [galleryIndex, setGalleryIndex] = useState(0);
 
   const updateGallery = (newGalleryIndex) => {
-    setGalleryIndex(newGalleryIndex);
-    setIndex(newGalleryIndex);
+    const newIndex = Math.max(0, Math.min(newGalleryIndex, images.length - 1));
+    setGalleryIndex(newIndex);
+    setIndex(newIndex);
   };
 
+  useEffect(() => {
+    if (index < galleryIndex || index >= galleryIndex + 4) {
+      setGalleryIndex(Math.floor(index / 4) * 4);
+    }
+  }, [index, galleryIndex]);
+
+  const visibleImages = images.slice(galleryIndex, galleryIndex + 4);
+
   return (
-    <div className="gallery">
+    <section className="gallery">
       <button
         id="gallery-prev"
-        onClick={() => galleryIndex > 0 && updateGallery(galleryIndex - 4)}
+        onClick={() => updateGallery(galleryIndex - 4)}
+        disabled={galleryIndex === 0}
       >
         &#10094;
       </button>
 
-      <div id="gallery-container">
-        {images.slice(galleryIndex, galleryIndex + 4).map((img, i) => (
+      <figure id="gallery-container">
+        {visibleImages.map((img, i) => (
           <img
             key={i}
             src={img}
@@ -29,17 +39,16 @@ const Gallery = ({ images, index, setIndex }) => {
             alt="Gallery"
           />
         ))}
-      </div>
+      </figure>
 
       <button
         id="gallery-next"
-        onClick={() =>
-          galleryIndex + 4 < images.length && updateGallery(galleryIndex + 4)
-        }
+        onClick={() => updateGallery(galleryIndex + 4)}
+        disabled={galleryIndex + 4 >= images.length}
       >
         &#10095;
       </button>
-    </div>
+    </section>
   );
 };
 
