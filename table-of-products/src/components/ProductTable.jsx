@@ -15,59 +15,41 @@ const ProductTable = () => {
   const [categories, setCategories] = useState([]);
   const [productId, setProductId] = useState("");
 
-  const isProdcutsFetched = useRef(false);
+  const isProductsFetched = useRef(false);
   const isCategoriesFetched = useRef(false);
 
+  // Generic fetch function
+  const fetchData = async (endpoint, callback) => {
+    try {
+      const res = await fetch(`${BASE_URL}/${endpoint}`);
+      if (!res.ok) throw new Error(`Failed to fetch ${endpoint}`);
+      const data = await res.json();
+      callback(data);
+    } catch (error) {
+      console.error(`Error fetching ${endpoint}:`, error);
+    }
+  };
+
   useEffect(() => {
-    if (!isProdcutsFetched.current) {
-      fetchProducts();
-      isProdcutsFetched.current = true;
+    if (!isProductsFetched.current) {
+      fetchData("", (data) => {
+        setProducts(data);
+        setFilteredProducts(data);
+      });
+      isProductsFetched.current = true;
     }
     if (!isCategoriesFetched.current) {
-      fetchCategories();
+      fetchData("categories", setCategories);
       isCategoriesFetched.current = true;
     }
   }, []);
 
-  const fetchProducts = async () => {
-    try {
-      const res = await fetch(`${BASE_URL}`);
-      if (!res.ok) throw new Error("Failed to fetch products ");
-      const data = await res.json();
-      setProducts(data);
-      setFilteredProducts(data);
-    } catch (error) {
-      console.error("Error fetching product:", error);
-    }
-  };
-
-  const fetchCategories = async () => {
-    try {
-      const res = await fetch(`${BASE_URL}/categories`);
-      if (!res.ok) throw new Error("Failed to fetch categories ");
-      const data = await res.json();
-      setCategories(data);
-    } catch (error) {
-      console.error("Error fetching product", error);
-    }
-  };
-
-  const fetchProductById = async (id) => {
+  const fetchProductById = (id) => {
     if (!id) {
       setFilteredProducts(products);
       return;
     }
-    try {
-      const res = await fetch(`${BASE_URL}/${id}`);
-      if (!res.ok) {
-        alert("Product not found!");
-        return;
-      }
-      const data = await res.json();
-      setFilteredProducts([data]);
-    } catch (error) {
-      console.error("Error fetching product:", error);
-    }
+    fetchData(id, (data) => setFilteredProducts([data]));
   };
 
   const handleProductIdChange = (e) => {
@@ -131,7 +113,7 @@ const ProductTable = () => {
           setShowForm(true);
         }}
       >
-        Add New Product
+        Add Product
       </button>
 
       {showForm && (

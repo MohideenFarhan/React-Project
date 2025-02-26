@@ -8,9 +8,9 @@ import ProductTable from "./components/ProductTable";
 
 function App() {
   return (
-    <div>
+    <main>
       <ProductTable />
-    </div>
+    </main>
   );
 }
 

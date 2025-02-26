@@ -1,4 +1,5 @@
 @import url('./index.css');
+
 .container {
   max-width: 56.25rem;
   margin: 1.25rem auto;
@@ -10,25 +11,28 @@
 }
 
 .input-box {
-  width: 82%;
-  height: 1rem;
+  width: 70%;
+  height: 1.5rem;
   outline: none;
   padding: 0.5rem;
   font-size: 1rem;
+  border: 0.0625rem solid var(--border-color);
 }
 
 .table-container {
   width: 100%;
-  overflow-x: auto;
+  max-height: 1020px; /* Set a fixed height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  border: 1px solid var(--border-color);
 }
+
 
 table {
   width: 100%;
   border-collapse: collapse;
   background: var(--modal-bg);
   border-radius: 0.5rem;
-  overflow: hidden;
-  margin-top: 0.625rem;
 }
 
 th, td {
@@ -74,25 +78,26 @@ button:hover {
 .addNew-btn {
   background-color: var(--success-color);
   color: var(--light-bg);
-  width: 14%;
-  padding: 0.25rem 0 0.4375rem 0;
+  width: 20%;
+  padding: 0.5rem 0;
 }
 
 .add-btn {
   background: var(--success-color);
   color: white;
+  width: 100%;
 }
 
 .edit-btn {
   background: var(--warning-color);
   color: var(--text-color);
-  width: 86%;
+  width: 100%;
 }
 
 .delete-btn {
   background: var(--danger-color);
   color: white;
-  width: 86%;
+  width: 100%;
 }
 
 .modal, .popup {
@@ -101,8 +106,8 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -50%);
   background: var(--modal-bg);
-  padding: 1.25rem;
-  width: 50%;
+  padding: 1rem;
+  width: 30%;
   box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
   border-radius: 0.5rem;
   text-align: center;
@@ -124,7 +129,7 @@ button:hover {
 }
 
 .modal select {
-  width: 82%;
+  width: 83%;
   padding: 0.5rem;
   margin: 0.5rem 0;
   border: 0.0625rem solid #ccc;
@@ -137,7 +142,7 @@ button:hover {
 }
 
 .modal button {
-  width: 30%;
+  width: 60%;
   margin-top: 0.625rem;
 }
 
@@ -156,17 +161,21 @@ button:hover {
     width: 95%;
     padding: 1rem;
   }
-  
+
   .input-box {
-    width: 78%;
+    width: 70%;
   }
 
   .modal, .popup {
-    width: 80%;
+    width: 90%;
+  }
+
+  .modal input, .modal textarea {
+    width: 90%;
   }
 
   .modal select {
-    width: 82%;
+    width: 93%;
   }
 
   table {
@@ -175,6 +184,10 @@ button:hover {
 
   button {
     font-size: 0.875rem;
+  }
+
+  .addNew-btn{
+    width: 20%;
   }
 }
 
@@ -184,16 +197,12 @@ button:hover {
     padding: 0.75rem;
   }
 
-  .table-container {
-    overflow-x: auto;
-  }
-
   table {
     font-size: 0.875rem;
   }
 
   .input-box {
-    width: 76%;
+    width: 70%;
   }
 
   .modal, .popup {
@@ -201,8 +210,12 @@ button:hover {
     padding: 1rem;
   }
 
+  .modal input, .modal textarea {
+    width: 90%;
+  }
+
   .modal select {
-    width: 80%;
+    width: 93%;
   }
 
   th, td {
@@ -212,30 +225,52 @@ button:hover {
   button {
     font-size: 0.8125rem;
   }
+  .addNew-btn{
+    width: 20%;
+  }
+
+  button,.add-btn{
+    width: 60%;
+  }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 320px) {
+  .container {
+    width: 100%;
+    padding: 0.75rem;
+  }
+
   .input-box {
-    width: 72%;
+    width: 60%;
+    height: 1.5rem;
   }
 
   .modal, .popup {
-    width: 95%;
+    width: 80%;
   }
 
-  .table-container {
-    overflow-x: auto;
-  }
 
   table {
-    font-size: 0.875rem;
+    font-size: 0.75rem;
   }
 
-  .modal input, .modal select, .modal textarea {
+  .modal input, .modal textarea {
     width: 90%;
   }
 
+  .modal select{
+    width: 95%;
+  }
+
+
+
   button {
     font-size: 0.75rem;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .addNew-btn {
+    width: 30%;
   }
 }
