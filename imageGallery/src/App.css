@@ -1,0 +1,31 @@
+.gallery {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+#gallery-container {
+  display: flex;
+  gap: 0.5rem;
+}
+.gallery-img {
+  width: 5rem;
+  height: 5rem;
+  object-fit: contain;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.3s;
+}
+.active-img {
+  border: 2px solid red;
+}
+.lightbox-prev,
+.lightbox-next,
+#gallery-prev,
+#gallery-next {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 0.8rem;
+  border-radius: 50%;
+}
