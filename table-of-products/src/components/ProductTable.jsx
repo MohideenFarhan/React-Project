@@ -46,6 +46,14 @@ const ProductTable = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (showForm || showDeletePopup) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [showForm, showDeletePopup]);
+
   const fetchProductById = (id) => {
     if (!id) {
       setFilteredProducts(products);
@@ -133,13 +141,14 @@ const ProductTable = () => {
       </button>
 
       {showForm && (
-        <ProductForm
-          editingProduct={editingProduct}
-          categories={categories}
-          onSave={handleAddOrUpdate}
-          onCancel={() => setShowForm(false)}
-          className="modal"
-        />
+        <div className="overlay">
+          <ProductForm
+            editingProduct={editingProduct}
+            categories={categories}
+            onSave={handleAddOrUpdate}
+            onCancel={() => setShowForm(false)}
+          />
+        </div>
       )}
 
       <ProductList
@@ -149,10 +158,12 @@ const ProductTable = () => {
       />
 
       {showDeletePopup && (
-        <DeletePopup
-          onConfirm={handleDelete}
-          onCancel={() => setShowDeletePopup(false)}
-        />
+        <div className="overlay">
+          <DeletePopup
+            onConfirm={handleDelete}
+            onCancel={() => setShowDeletePopup(false)}
+          />
+        </div>
       )}
 
       {filteredProducts.length > productsPerPage && (

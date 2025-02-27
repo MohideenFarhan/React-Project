@@ -1,13 +1,13 @@
 :root {
-  --primary-color: #007bff;
-  --success-color: #28a745;
-  --warning-color: #ffc107;
-  --danger-color: #dc3545;
-  --gray-color: #6c757d;
-  --light-bg: #f8f9fa;
-  --border-color: #ddd;
-  --modal-bg: #ffffff;
-  --text-color: #000000;
+  --primary-color: #007bff;       
+  --success-color: #28a745;       
+  --warning-color: #ffc107;      
+  --danger-color: #dc3545;        
+  --gray-color: #6c757d;          
+  --light-bg: #f8f9fa;            
+  --border-color: #dddddd;        
+  --white: #ffffff;              
+  --black: #000000;               
 }
 
 .container {
@@ -31,17 +31,17 @@
 
 .table-container {
   width: 100%;
-  max-height: 1020px; 
+  max-height: 63.75rem; 
   overflow-y: auto; 
   overflow-x: auto; 
-  border: 1px solid var(--border-color);
+  border: 0.063rem solid var(--border-color);
 }
 
 
 table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--modal-bg);
+  background: var(--white);
   border-radius: 0.5rem;
 }
 
@@ -54,7 +54,7 @@ th, td {
 
 th {
   background: var(--primary-color);
-  color: white;
+  color: var(--white);
 }
 
 td img {
@@ -85,6 +85,38 @@ button:hover {
   opacity: 0.8;
 }
 
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal {
+  background: var(--white);
+  padding: 1.25rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0 0.938rem rgba(0, 0, 0, 0.5);
+  max-width: 31.25rem;
+  text-align: center;
+}
+
+.addNew-btn {
+  margin-bottom: 1.25rem;
+  padding: 0.625rem 0.938rem;
+  color: var(--white);
+  border: none;
+  border-radius: 0.313rem;
+  cursor: pointer;
+}
+
 .addNew-btn {
   background-color: var(--success-color);
   color: var(--light-bg);
@@ -94,7 +126,7 @@ button:hover {
 
 .add-btn {
   background: var(--success-color);
-  color: white;
+  color:var(--white);
   width: 100%;
 }
 
@@ -106,25 +138,25 @@ button:hover {
 
 .delete-btn {
   background: var(--danger-color);
-  color: white;
+  color:var(--white);
   width: 100%;
 }
 
 .pagination {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 1.25rem 0;
   gap: 1rem;
 }
 
 span{
-  margin-top: 15px;
+  margin-top: 0.938rem;
 }
 
 .pagination button {
   padding: 0.5rem 1rem;
   background: #007bff;
-  color: #fff;
+  color: var(--white);
   border: none;
   cursor: pointer;
   border-radius: 0.3rem;
@@ -146,7 +178,7 @@ span{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: var(--modal-bg);
+  background: var(--white);
   padding: 1rem;
   width: 30%;
   box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
@@ -178,6 +210,10 @@ span{
   font-size: 1rem;
 }
 
+.modal-title{
+  font-size: 2rem;
+}
+
 .modal textarea {
   height: 5rem;
 }
@@ -189,12 +225,12 @@ span{
 
 .delete-popup {
   background-color: var(--danger-color);
-  color: white;
+  color: var(--white);
 }
 
 .close-btn {
   background: var(--gray-color);
-  color: white;
+  color: var(--white);
 }
 
 @media (max-width: 768px) {
@@ -325,4 +361,4 @@ span{
   .addNew-btn {
     width: 30%;
   }
-}
+} 
