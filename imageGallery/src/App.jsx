@@ -3,6 +3,22 @@ import Slider from "./components/slider";
 import Gallery from "./components/gallery";
 import "./App.css";
 
+const fetchImages = async () => {
+  try {
+    const res = await fetch("https://fakestoreapi.com/products");
+    if (!res.ok) throw new Error("Failed to fetch images");
+
+    const data = await res.json();
+    const imageUrls = data.map((product) => product.image);
+
+    if (imageUrls.length === 0) throw new Error("No images available");
+
+    return imageUrls;
+  } catch (err) {
+    throw err;
+  }
+};
+
 const App = () => {
   const [images, setImages] = useState([]);
   const [index, setIndex] = useState(0);
@@ -10,16 +26,9 @@ const App = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchImages = async () => {
+    const getImages = async () => {
       try {
-        const res = await fetch("https://fakestoreapi.com/products");
-        if (!res.ok) throw new Error("Failed to fetch images");
-
-        const data = await res.json();
-        const imageUrls = data.map((product) => product.image);
-
-        if (imageUrls.length === 0) throw new Error("No images available");
-
+        const imageUrls = await fetchImages();
         setImages(imageUrls);
       } catch (err) {
         setError(err.message);
@@ -28,7 +37,7 @@ const App = () => {
       }
     };
 
-    fetchImages();
+    getImages();
   }, []);
 
   return (
