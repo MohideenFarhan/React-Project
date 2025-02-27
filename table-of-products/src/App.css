@@ -1,4 +1,14 @@
-@import url('./index.css');
+:root {
+  --primary-color: #007bff;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --gray-color: #6c757d;
+  --light-bg: #f8f9fa;
+  --border-color: #ddd;
+  --modal-bg: #ffffff;
+  --text-color: #000000;
+}
 
 .container {
   max-width: 56.25rem;
@@ -21,9 +31,9 @@
 
 .table-container {
   width: 100%;
-  max-height: 1020px; /* Set a fixed height */
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: auto; /* Enable horizontal scrolling */
+  max-height: 1020px; 
+  overflow-y: auto; 
+  overflow-x: auto; 
   border: 1px solid var(--border-color);
 }
 
@@ -99,6 +109,37 @@ button:hover {
   color: white;
   width: 100%;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 1rem;
+}
+
+span{
+  margin-top: 15px;
+}
+
+.pagination button {
+  padding: 0.5rem 1rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  transition: background 0.3s;
+}
+
+.pagination button:hover {
+  background: #0056b3;
+}
+
+.pagination button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 
 .modal, .popup {
   position: fixed;
@@ -262,6 +303,17 @@ button:hover {
     width: 95%;
   }
 
+  .pagination{
+    width: 100%;
+  }
+
+  .pagination button{
+    width: 30%;
+  }
+
+  span{
+    width: 25%;
+  }
 
 
   button {

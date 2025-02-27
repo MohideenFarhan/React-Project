@@ -4,6 +4,7 @@ import ProductList from "./ProductList";
 import ProductForm from "./ProductForm";
 import ProductSearch from "./ProductSearch";
 import DeletePopup from "./DeletePopup";
+import Pagination from "./Pagination";
 
 const ProductTable = () => {
   const [products, setProducts] = useState([]);
@@ -14,11 +15,12 @@ const ProductTable = () => {
   const [showDeletePopup, setShowDeletePopup] = useState(false);
   const [categories, setCategories] = useState([]);
   const [productId, setProductId] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 10;
 
   const isProductsFetched = useRef(false);
   const isCategoriesFetched = useRef(false);
 
-  // Generic fetch function
   const fetchData = async (endpoint, callback) => {
     try {
       const res = await fetch(`${BASE_URL}/${endpoint}`);
@@ -56,6 +58,7 @@ const ProductTable = () => {
     const id = e.target.value;
     setProductId(id);
     fetchProductById(id);
+    setCurrentPage(1);
   };
 
   const handleAddOrUpdate = (newProduct) => {
@@ -72,6 +75,7 @@ const ProductTable = () => {
     }
     setShowForm(false);
     setEditingProduct(null);
+    setCurrentPage(1);
   };
 
   const handleEdit = (product) => {
@@ -94,6 +98,18 @@ const ProductTable = () => {
       );
     }
     setShowDeletePopup(false);
+  };
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = filteredProducts.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
   };
 
   return (
@@ -127,7 +143,7 @@ const ProductTable = () => {
       )}
 
       <ProductList
-        products={filteredProducts}
+        products={currentProducts}
         onEdit={handleEdit}
         onDelete={handleDeleteClick}
       />
@@ -136,6 +152,14 @@ const ProductTable = () => {
         <DeletePopup
           onConfirm={handleDelete}
           onCancel={() => setShowDeletePopup(false)}
+        />
+      )}
+
+      {filteredProducts.length > productsPerPage && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
         />
       )}
     </main>
