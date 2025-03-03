@@ -1,0 +1,25 @@
+:root {
+    --primary-color: #007bff;       
+    --success-color: #28a745;       
+    --warning-color: #ffc107;      
+    --danger-color: #dc3545;        
+    --gray-color: #6c757d;          
+    --light-bg: #f8f9fa;            
+    --border-color: #dddddd;        
+    --white: #ffffff;              
+    --black: #000000;     
+    --color:#ccc;  
+    --rgba:rgba(0, 0, 0, 0.5);
+    --rgba2:rgba(0, 0, 0, 0.6); 
+    --rgba3:rgba(0, 0, 0, 0.1);       
+  }
+  
+  .container {
+    max-width: 56.25rem;
+    margin: 1.25rem auto;
+    padding: 1.25rem;
+    background: var(--light-bg);
+    border-radius: 0.625rem;
+    box-shadow: 0 0 0.625rem var(--rgba3);
+    text-align: center;
+  }

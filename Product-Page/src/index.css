@@ -1,0 +1,16 @@
+:root {
+  --primary-bg: #98A6D4; 
+  --card-border: #ccc; 
+  --card-bg: #f5f5f5; 
+  --text-bold: #000;
+  --card-shadow: rgba(0, 0, 0, 0.2); 
+  --white: #fff; 
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
