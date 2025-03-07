@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setProducts } from "../features/productSlice";
-
 import { useEffect } from "react";
 import { BASE_URL } from "../apiconfig";
 import { useNavigate } from "react-router-dom";
+import NavBar from "./Navbar";
 
 const ProductPage = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const ProductPage = () => {
 
   return (
     <>
-      <h2>Products Page</h2>
+      <NavBar />
 
       <main className="product-cards">
         {products.map((product) => (

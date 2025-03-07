@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
 import { addToWishList } from "../features/wishlistSlice";
 import { useNavigate } from "react-router-dom";
+
 const ProductDetails = () => {
   const dispatch = useDispatch();
   const location = useLocation();
